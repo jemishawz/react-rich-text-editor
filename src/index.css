@@ -1,0 +1,320 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 220 14% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 14% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 14% 10%;
+
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 220 14% 30%;
+
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 10% 46%;
+
+    --accent: 217 91% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 217 91% 60%;
+
+    --radius: 0.5rem;
+
+    --toolbar-bg: 220 14% 98%;
+    --toolbar-border: 220 13% 90%;
+    --toolbar-button-hover: 220 14% 94%;
+    --toolbar-button-active: 217 91% 95%;
+    
+    --editor-bg: 0 0% 100%;
+    --editor-border: 220 13% 88%;
+    
+    --dropdown-bg: 0 0% 100%;
+    --dropdown-border: 220 13% 90%;
+    --dropdown-hover: 220 14% 96%;
+    
+    --handle-bg: 217 91% 60%;
+    --handle-border: 0 0% 100%;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222 47% 6%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 8%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 8%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 222 47% 14%;
+    --secondary-foreground: 210 40% 90%;
+
+    --muted: 222 47% 14%;
+    --muted-foreground: 215 20% 60%;
+
+    --accent: 217 91% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 222 47% 18%;
+    --input: 222 47% 18%;
+    --ring: 217 91% 60%;
+
+    --toolbar-bg: 222 47% 10%;
+    --toolbar-border: 222 47% 16%;
+    --toolbar-button-hover: 222 47% 16%;
+    --toolbar-button-active: 217 91% 20%;
+    
+    --editor-bg: 222 47% 8%;
+    --editor-border: 222 47% 14%;
+    
+    --dropdown-bg: 222 47% 10%;
+    --dropdown-border: 222 47% 18%;
+    --dropdown-hover: 222 47% 16%;
+    
+    --handle-bg: 217 91% 60%;
+    --handle-border: 222 47% 8%;
+
+    --sidebar-background: 222 47% 8%;
+    --sidebar-foreground: 210 40% 90%;
+    --sidebar-primary: 217 91% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 222 47% 14%;
+    --sidebar-accent-foreground: 210 40% 90%;
+    --sidebar-border: 222 47% 16%;
+    --sidebar-ring: 217 91% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+}
+
+@layer components {
+  .toolbar-button {
+    @apply flex items-center justify-center w-8 h-8 rounded-md transition-all duration-150 ease-out;
+    @apply text-muted-foreground hover:text-foreground;
+    @apply hover:bg-toolbar-button-hover;
+    @apply focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-1;
+  }
+
+  .toolbar-button-active {
+    @apply bg-toolbar-button-active text-primary;
+  }
+
+  .toolbar-dropdown {
+    @apply flex items-center gap-1 px-2 h-8 rounded-md transition-all duration-150;
+    @apply text-sm text-muted-foreground hover:text-foreground;
+    @apply hover:bg-toolbar-button-hover border border-transparent;
+    @apply focus:outline-none focus:ring-2 focus:ring-ring;
+  }
+
+  .toolbar-separator {
+    @apply w-px h-6 bg-border mx-1;
+  }
+
+  .dropdown-menu {
+    @apply absolute z-50 mt-1 py-1 rounded-lg shadow-lg;
+    @apply bg-dropdown border border-dropdown-border;
+    @apply min-w-[140px] max-h-[280px] overflow-y-auto;
+  }
+
+  .dropdown-item {
+    @apply flex items-center px-3 py-2 text-sm cursor-pointer transition-colors;
+    @apply text-foreground hover:bg-dropdown-hover;
+  }
+
+  .dropdown-item-active {
+    @apply bg-primary/10 text-primary;
+  }
+
+  .editor-canvas {
+    @apply min-h-[400px] p-6 outline-none;
+    @apply prose prose-sm sm:prose lg:prose-lg max-w-none;
+    @apply dark:prose-invert;
+  }
+
+  .editor-canvas h1 {
+    @apply text-3xl font-semibold mt-6 mb-4 leading-tight;
+  }
+
+  .editor-canvas h2 {
+    @apply text-2xl font-semibold mt-5 mb-3 leading-tight;
+  }
+
+  .editor-canvas h3 {
+    @apply text-xl font-semibold mt-4 mb-2 leading-tight;
+  }
+
+  .editor-canvas p {
+    @apply my-3 leading-relaxed;
+  }
+
+  .editor-canvas ul,
+  .editor-canvas ol {
+    @apply my-3 pl-6;
+  }
+
+  .editor-canvas ul {
+    @apply list-disc;
+  }
+
+  .editor-canvas ol {
+    @apply list-decimal;
+  }
+
+  .editor-canvas li {
+    @apply my-1;
+  }
+
+  .editor-canvas blockquote {
+    @apply border-l-4 border-primary/40 pl-4 my-4 italic text-muted-foreground;
+  }
+
+  .editor-canvas pre {
+    @apply bg-muted rounded-lg p-4 my-4 overflow-x-auto font-mono text-sm;
+  }
+
+  .editor-canvas a {
+    @apply text-primary underline underline-offset-2 hover:text-primary/80;
+  }
+
+  .editor-canvas img {
+    @apply max-w-full h-auto rounded-lg cursor-pointer transition-all duration-150;
+  }
+
+  .editor-canvas img:hover {
+    @apply ring-2 ring-primary/30 ring-offset-1;
+  }
+
+  .editor-canvas img.image-selected {
+    @apply ring-2 ring-primary ring-offset-2;
+  }
+
+  /* Image resize container */
+  .image-resize-container {
+    @apply relative inline-block;
+  }
+
+  .image-resize-container.selected {
+    @apply ring-2 ring-primary ring-offset-2 rounded-lg;
+  }
+
+  .resize-handle {
+    @apply absolute w-3 h-3 bg-handle rounded-full border-2 border-handle-border;
+    @apply shadow-md transition-all duration-150;
+    @apply opacity-0 pointer-events-none;
+  }
+
+  .image-resize-container.selected .resize-handle,
+  .editor-canvas img.image-selected + .resize-handles .resize-handle {
+    @apply opacity-100 pointer-events-auto;
+  }
+
+  .resize-handle:hover {
+    @apply scale-125 bg-primary;
+  }
+
+  .resize-handle.top-left {
+    @apply -top-1.5 -left-1.5 cursor-nwse-resize;
+  }
+
+  .resize-handle.top-right {
+    @apply -top-1.5 -right-1.5 cursor-nesw-resize;
+  }
+
+  .resize-handle.bottom-left {
+    @apply -bottom-1.5 -left-1.5 cursor-nesw-resize;
+  }
+
+  .resize-handle.bottom-right {
+    @apply -bottom-1.5 -right-1.5 cursor-nwse-resize;
+  }
+
+  .resize-handle.middle-right {
+    @apply top-1/2 -right-1.5 -translate-y-1/2 cursor-ew-resize;
+  }
+
+  .resize-handle.middle-bottom {
+    @apply -bottom-1.5 left-1/2 -translate-x-1/2 cursor-ns-resize;
+  }
+
+  .color-picker-popover {
+    @apply absolute z-50 p-3 rounded-lg shadow-lg;
+    @apply bg-popover border border-border;
+  }
+
+  .color-swatch {
+    @apply w-6 h-6 rounded cursor-pointer transition-transform hover:scale-110;
+    @apply ring-1 ring-border;
+  }
+
+  .color-preview {
+    @apply w-4 h-4 rounded-full ring-1 ring-border;
+  }
+
+  .link-modal {
+    @apply fixed inset-0 z-50 flex items-center justify-center;
+    @apply bg-background/80 backdrop-blur-sm;
+  }
+
+  .link-modal-content {
+    @apply bg-card p-6 rounded-xl shadow-xl border border-border;
+    @apply w-full max-w-md;
+  }
+}
+
+@layer utilities {
+  .scrollbar-thin {
+    scrollbar-width: thin;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    @apply bg-border rounded-full;
+  }
+}
